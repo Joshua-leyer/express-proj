@@ -1,0 +1,32 @@
+
+
+<header class="row">
+    <div class="link-home col-xs-5 col-md-3 col-md-offset-1 col-xs-offset-1">
+            <img src="" tyle ="background: url(/imgs/剑.jpg)" class="logo img-circle img-responsive center-block"></img>
+            <span>Joshua Blog</span>
+    </div>
+
+    <div class="menu col-xs-2  col-xs-offset-4 col-md-4 col-md-offset-3">        
+        <ul class="right-menu">
+            {{ if user }}
+                <li class="menu-item active"><a href="/article/add">New Article</a></li>
+                <li class="menu-item"><a href="/article/manage">All Articles</a></li>
+                <!-- <li class="menu-item"><a href="/users/allusers">About</a></li> -->
+                <li class="menu-item"><a href="/users/logout">Log out</a></li>
+            {{ else }}
+                <li class="menu-item">
+                    <a href="/users/login">Login</a> /
+                    <a href="/users/register">Register</a>
+                </li>
+            {{ /if }}
+        </ul>
+    </div>
+</header>
+
+<script>
+    $(".link-home").click(function() {
+        window.location.href = '/'
+    })
+</script>
+
+

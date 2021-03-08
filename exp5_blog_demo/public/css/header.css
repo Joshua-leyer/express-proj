@@ -1,0 +1,86 @@
+a:hover,  a:visited,  a:link,  a:active {
+    text-decoration: none;
+    color: #333;
+}
+
+header {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    margin:0;
+    width: 100%;
+    height: 82px;
+    /* background: greenyellow; */
+    z-index: 424;
+    background-color: rgba(255,255,255,0.98);
+    box-shadow: 0 0 3px rgb(14 14 14 / 26%);
+    
+}
+
+
+.link-home {
+    height: 100%;
+    font-size: 3rem;
+    /* text-align: center; */
+    line-height: 82px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #fca244;
+    cursor: pointer;
+}
+
+.link-home img {
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.row {
+    margin-right: 0; 
+    margin-left: 0;
+}
+
+.logo {
+    height: 80%;
+    margin: 0 10px;
+}
+
+.menu {
+    height: 100%;
+    font-size: 24px;
+    /* border: 3px solid steelblue; */
+}
+
+.right-menu{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: stretch;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    margin: 0;
+    /* 给文字居中 */
+    text-align: center;
+    display: inline-flex;
+    /* justify-content: center;  */
+    align-items: center;
+}
+
+.menu-item a {
+    padding-bottom: 3px;
+    margin: 10px;
+}
+
+.menu-item a:hover {
+    padding: 0;
+    border-bottom: 3px solid #fca244;
+}
+ul {
+    list-style: none;
+}

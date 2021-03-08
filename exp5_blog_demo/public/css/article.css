@@ -1,0 +1,15 @@
+#article-content {
+    margin-bottom: 24px;
+}
+
+
+#article-content h1{
+    text-align: center;
+    font-size: 5rem;
+}
+
+
+
+#article-body {
+    font-size: 3rem;
+}

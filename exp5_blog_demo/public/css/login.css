@@ -1,0 +1,45 @@
+#login-form {
+    top: 88px;
+}
+#login-form img {
+    height: 88px;
+    width: 88px;
+}
+#login-form img, h2 {
+    text-align: center;
+    color: #ffb50d;
+}
+#login-form label {
+    margin-top: 10px;
+}
+#login {
+    margin-top: 24px;
+    padding: 40px;
+    border: 1px solid #eaecef;
+    background:#f6f8fa;
+    border-radius: 10px;
+    font-size: 2rem;
+}
+
+#login input {
+    height: 48px;
+    border-radius: 10px;
+}
+#login button {
+    width: 100%;
+    border-radius: 7px;
+    border:1px solid #1b1f2326;
+    outline:none;
+    height: 44px;
+    font-size: 2rem;
+    font-weight: 550;
+    margin-top: 10px;
+}
+
+#posi {
+    position: relative;
+}
+#forget-password {
+    position: absolute;
+    right: 0;
+}
