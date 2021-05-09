@@ -19,8 +19,8 @@
         <div class="main-container">
         {{ each articles value }}
             <section>
-                <h2><a href="article/{{ `${value._id}` }}" class="title">{{ value.title }}</a></h2>
-                <address>{{ value.auther }}</address>
+                <h2><a href="article/{{ `${value._id}` }}" class="title">《{{ value.title }}》</a></h2>
+                <!-- <address>{{ value.auther }}</address> -->
                 <!-- <time datetime="2018-09-17">2018-09-17</time> -->
                 <div class="content">{{ value.body }}</div>
                 <a href="article/{{ `${value._id}` }}" class="more">Read more</a>

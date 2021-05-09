@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {{ include '../layouts/layout_head.html' }}
+    <link rel="stylesheet" href="/css/header.css">
+</head>
+<body>
+    {{ include '../layouts/layout_header.html'}}
+
+    <div class="box col-md-8 col-md-offset-2 col-xs-12">
+        <form action="/article/add" method="POST" id="new-article" >
+            <input type="text" name="title"> <br />
+            <div class="text-box col-md-12 col-xs-12 ">
+                <textarea name="body" form="new-article" class="comments" rows="20" cols="124"></textarea> <br />
+            </div>
+            <input type="submit" class="btn btn-warning" value="提交">
+        </form>
+    </div>
+
+</body>
+<style>
+    .comments {
+        width: 80%;
+        overflow: auto;
+        word-break: break-all;
+    }
+    .box{
+        top: 30px;
+        text-align: center;
+    }
+
+
+    input[type="text"] {
+        margin: 10px;
+        width: 80%;
+    }
+    input[type="submit"] {
+        width: 80%;
+    }
+    textarea {
+        padding: 10px;
+        font-size: 1.5rem;
+    }
+</style>
+    
+<script>
+    
+</script>
+</html>
