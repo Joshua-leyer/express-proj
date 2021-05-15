@@ -25,7 +25,6 @@ mongodb 、 mongoose
 
 # 6 保存文章到mongodb
 
-addarticle.html > articles.js
 
 ```js 
 router.post('/add', function(req, res) {
@@ -169,7 +168,6 @@ findByIdAndUpdate()
 # 10 删除文章, 
 作者采用ajax 请求处理 , 理由是删除操作如果是get请求来完成的话,不安全
 
-
 app.delete()
 
 -express delete路由的知识点
@@ -206,7 +204,7 @@ app.delete('/article/:id', function(req, res) {
 
 key word : express 添加flash信息
 
-基于session 来实现跳转页面还能保留一些信息
+基于 session 来实现跳转页面还能保留一些信息
 
 npm i express-sesion
 
@@ -257,7 +255,6 @@ bcrypt.genSalt(10, function(err, salt) {
 #17 登录页面和cookies概念
 
 
-
 #18 登录认证 passport工具介绍
 
 ? >　不清楚 cookies 和session的关系到底是什么 。 以及token和cookies的关系, 到底应该保存到什么地方
@@ -295,6 +292,7 @@ router.post('/login', function(req, res) {
     })
     res.redirect('/')
 })
+
 关于如何查看是否使用成功的写入了cookie值。 可以从浏览器f12里面找到,如果学习的时候使用了别的工具就更好了。
 
 ```

@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt')
 
 let router = express.Router()
 
-//查看所有用户
+// 查看所有用户
 router.get('/allusers', function(req, res, next) {
     User.find({}, function(err, data) {
         // if (err) throw err
@@ -27,7 +27,6 @@ router.get('/register', function(req, res) {
 //注册用户
 router.post('/register', function(req, res, next) {
     let user = new User(req.body)
-
     //这个写法可真麻烦 ,能一行就解决的最好了 . 
     bcrypt.genSalt(10, function(err, salt) {
         if (err) throw err
@@ -44,6 +43,7 @@ router.post('/register', function(req, res, next) {
         })
     })
 })
+
 
 //登录
 router.get('/login', function(req, res) {

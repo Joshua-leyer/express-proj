@@ -147,16 +147,6 @@ router.get('/:id', function(req, res, next) {
 路由解析的时候用 req.parms  
 
 
--关于req.params 的用法
-
-参数在url中时
-
-/path/:id,参数在req.params.id中
-
-/path?id=xx,参数在req.query.id中
-
-用json body 或者form 表单传参时参数在req.body中
-
 
 mongodb方面
 -关于更新操作
@@ -192,6 +182,7 @@ let server = app.listen(5000, '127.0.0.1', () => {
 从mongo里面拿到的数据log出来的每个文章id是字符串不带引号的.而发送到前端,　art 输出的时候就是带双引号的字符串,不知道那一个环节有问题.
 
 [别人类似的问题](https://segmentfault.com/a/1190000007818969)
+
 总的来说是mongoose 返回数据类型的问题
 
 done > 这里有两个解决问题的思路  

@@ -66,7 +66,7 @@ app.get('/', function(req, res) {
     console.log(req.session)
     // console.log(`sessionId 这里的值应该和前端cookie值 去调前面的一部分后面的都一样`, req.sessionID)
     Article.find({}, function(err, articles) {
-        console.log(`当前session的内容`, req.session)
+        console.log(`当前session的内容`, req.session)   
         if (err) next(err)
         res.render('index.html',{
             articles: articles,
