@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>flex 实现</title>
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    <header class="row">
+        <div class="link-home col-xs-5 col-md-3 col-md-offset-1">
+                <img src="/imgs/default-avator.jpg" class="logo img-circle"></img>
+                <span>Joshua Blog</span>
+        </div>
+
+        <div class="menu col-xs-2  col-xs-offset-5 col-md-4 col-md-offset-3">        
+            <ul class="right-menu">
+                <li class="menu-item active"><a href="/">home</a></li>
+                <li class="menu-item"><a href="/user/allusers">my profile</a></li>
+                {{ if user }}
+                    <li class="menu-item"><a href="/article/add">add Article</a></li>
+                    <li class="menu-item"><a href="/users/logout">Log out</a></li>
+                {{ else }}
+                    <li class="menu-item"><a href="/usrs/login">Login</a></li>
+                {{ /if }}
+            </ul>
+        </div>
+    </header>
+
+    <main>
+
+        <section>
+            <h2><a href=""class="title">Tittle</a></h2>
+            <address>Joshua</address>
+            <time datetime="2018-09-17">2018-09-17</time>
+            <div class="content">body....</div>
+            <a href="" class="more">Read more</a>
+        </section>
+
+        {{ each articles value }}
+
+            <h2><a href="article/{{ `${value._id}` }}" class="title">{{ value.title }}</a></h2>
+            <!-- <address>Joshua</address> -->
+            <time datetime="2018-09-17">2018-09-17</time>
+            <div class="content">body....</div>
+            <a href="" class="more">Read more</a>
+        {{ /each }}
+    </main>
+
+
+    <footer>
+        <!-- <div class="col-md-12">
+            footer
+        </div> -->
+        <p>footer ~~~~!</p>
+    </footer>
+</body>
+<style>
+
+
+</style>
+</html>
