@@ -12,7 +12,7 @@ function auth(req, res, next) {
         return next()
     }
     // if (req.session.user !== false) 
-    //没有登录就重定向让他去登录去
+    // 没有登录就重定向让他去登录去
     // learnning log> 发现一个有趣的关于路由的问题, 如果res.redirect('user/login') 实际就会到
     // 当前 中间件或者说环境的那个路由下的路径 也就是 /articles/users/login  所以最前面要加上/
     // 知识点express 路由规则
@@ -20,7 +20,7 @@ function auth(req, res, next) {
 }
 
 // 我傻了怎么 添加个这东西就报错了 , 单独放就不报错  
-// md为什么这个路由顺序也会导致不同的错误, 我把这个add 放到下面就报错
+// md 为什么这个路由顺序也会导致不同的错误, 我把这个add 放到下面就报错
 router.get('/add', auth, function(req, res) {
     res.render('articles/addarticle.html',{
         title: 'add Article',
@@ -91,7 +91,7 @@ router.get('/:id', function(req, res, next) {
         //这里由于mongodb 从数据库里拿到的对象并不是js的对象.多了一层。
         //所以直接修改原内容，会导致意外情况
 
-        // 根据文章auther 查到用户名字
+        // 根据文章 auther 查到用户名字
         User.findById(article.auther, function(err, data) {
             // if (err) throw err
             if (err) next(err)
@@ -130,7 +130,6 @@ router.post('/update/:id', function(req, res, next) {
     let query = {_id: req.params.id}
     console.log(query)
 
-    // 方法1 奇怪, 这里画了横线,却能用
     Article.update(query, req.body, function(err) {
         // if (err) throw err
         if (err) next(err)

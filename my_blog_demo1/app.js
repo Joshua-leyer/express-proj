@@ -56,9 +56,14 @@ app.use('/article', ArticlesRouter)
 app.use('/users', UsersRouter)
 // app.use('/admin', AdminRouter)
 
+// 代码是一层层向下执行的, 如果上面的路由函数一个个 捕获筛选过后,并且
+// 在对应的router 函数里面 发生了错误就调用next() 函数, 会执行下一个, 
+// 所以, 这里捕获错误的函数代码位置也要注意.
+
 app.use(function (err, req, res, next) {
     res.status(500).send(err)
 })
+
 
 app.get('/', function(req, res, next) {
     // console.log(req.session)

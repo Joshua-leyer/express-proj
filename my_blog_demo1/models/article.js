@@ -5,7 +5,6 @@ var Schema = mongoose.Schema
 const ArticleSchema = new Schema({
     title: {
         type: String,
-        capped: 512,
         required: true
     },
     auther: {
