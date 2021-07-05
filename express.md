@@ -33,10 +33,10 @@ Vue + Node 前后端商城项目  [https://www.bilibili.com/video/BV1vJ411s7dR?p
 # Learning Log start
 
 ```js
-npm init
+    npm init
 ```
 
-创建app.js 、 router.js 、 public\  、 views\  、models\ 文件
+app.js 、 router.js 、 public\  、 views\  、models\  
 
 router官网对中间件讲解(https://expressjs.com/zh-cn/guide/using-middleware.html#middleware.router)
 
@@ -44,13 +44,57 @@ router官网对中间件讲解(https://expressjs.com/zh-cn/guide/using-middlewar
 
 ```js
 server.use(express.static(path.join(__dirname, 'public')))
+
 使用这种简写的配置静态文件, url那边直接 : http://127.0.0.1:3000/index.html 
 ```
 
-+ 关于app.render() 
+
+### express 从http请求中获取到web端传递的参数方法
+
+href [1] : https://segmentfault.com/a/1190000008060014
+
+href [2] : https://blog.csdn.net/zgljl2012/article/details/53032555
+
+```js
+
+    locahhost:3000/?id=424
+    let id = req.query.id // 424
+
+```
+
+处理post传递的参数
+
+```js
+let username = req.body.username
+
+```
+
+```js
+
+前端Http路径  
+'user/:id'
+
+后端获取的方式
+let id = req.params.id
+
+```
+
+
+
+### Router 排序的问题
+
+J在写得时候遇到过,但是没能找到准确的文章讲解这一块的.
+
+
+
+
+
+### 关于app.render() 方便
+
+Node.js 原生的写法,大概就是render的功能 
 
 ```js 
-大约等同, node原生
+
 app.get('/', (req, res) =>{
     fs.readFile('public/views/index.html', (err, data) => {
         if (err) return res.send(`500 服务器发生错误`)
@@ -62,9 +106,9 @@ app.get('/', (req, res) =>{
 ```
 
 
-!!! 关于路径配置的坑  
+### !!! 关于路径配置的坑  , 相对路径和绝对路径
 
-+ 关于模板引擎配置
+### 关于模板引擎配置
   
 [Express：模板引擎深入研究](https://www.cnblogs.com/chyingp/p/express-render-engine.html)
 
@@ -85,73 +129,18 @@ server.set('views', path.join(__dirname, './public/views/'))
 
 ```
 
-+ body-parser中间件
-
-
-#### ???? 关于 _id双引号 问题.
-
-详细见我的一些案例里面会有
-
-从mongo里面拿到的数据log出来的每个文章id是字符串不带引号的.而发送到前端,　art 输出的时候就是带双引号的字符串,不知道那一个环节有问题.
-```js 
-    Article.find({}, function(err, articles) {
-        if (err) throw err
-        // 输出的所有Article 表的所有文章.
-        console.log(articles)
-    })
-    
-```
-后端的内容拿到后发给前端模板引擎 , 显示出来就是 : "12sadi902134j"
-本来想要的输出是 : 字符串格式就行了,可是一同吧双引号也输出出来了.
-```html 
-    <h3> {{ $index }} - <a href="article/{{ value._id }}">{{ value.title }}</a> </h3>
-```
-[别人类似的问题](https://segmentfault.com/a/1190000007818969)
-
-总的来说是mongoose 返回数据类型的问题
-
-深入模板引擎  了解就收数据具体格式
-
-自己用find()函数返回的内容 输出出来发现是一个数组,每个元素是一个对象。怀疑跟这个有关系
-
-自己查到了有两个地方可能出问题, 所以大题就是能从这两个地方解决问题。
-
-done > A :
-
-问了一个人, 他告诉我怎么写, 但是我还没搞明白具体原因
-```html
-    {{ each articles value }}
-    <h4>{{ value._id }} </h4>
-    <h3> {{ $index }} - <a href="articles/{{ value._id }}">{{ value.title }} + {{ `${value._id}` }}</a> </h3>
-    {{ /each }}
-```
-{{ `${value.id}` }}  模板引擎写成这样 字符串的双引号就没有了 具体不清楚为什么
-
-还有一种办法 : >
-```js
-articles.forEach(function(item) {
-    item._id = item._id.toString()
-    // console.log(typeof item._id)  //不明白为什么拿到的是对象
-    console.log(`本次拿到的数据`, item)
-})
-
-```
-把某一个字段改成字符串类型重新赋值, 应为Mongo拿到的_id数据是 特有的数据类型, 还不是js 的基本数据类型,想办法转换一下数据类型,避免art 模板引擎拿到数据的时候因为数据格式的问题造成的 出现双引号
-
-    {{ article }}
-我写到文章更新页面的时候还发生了同样的错误,在服务端解决的办法不行了。我在html页面拿到的数据直接显示到页面
-{"_id":"603a6acc844efa08eb44b497","title":"two","body":"two"}
-发现它把数据本能的当成字符串来解析
+### body-parser 中间件 , 可以让express应用更方便的收到post请求的数据内容
 
 
 
-#### 前端使用jquery的发送ajax请求重定向又需要携带一些数据的话,需要express res.进行操作的那种解决办法
+
+### 前端使用jquery的发送ajax请求重定向又需要携带一些数据的话,需要express res.进行操作的那种解决办法
 
 后端send href的地址字符串,让前端success 回调函数拿到数据去 window.location.href= url  这样来处理
 
 
 
-#### 关于session 时候的不理解的问题
+### 关于session 时候的不理解的问题
 
 看的是黑马的教程,那个傻逼讲错了。草了。我在这硬听,怎么都听不明白。服了这种培训机构,黑马还算做的大的. 中国的环境,没话说
 
@@ -317,6 +306,9 @@ function auth(req, res, next) {
 
 
 
-# ?? ?
+# Q_A
 
 - ? 假如注册了同名的用户了. 数据校验在mongoose unique来完成。最终数据库的错误如何捕获,并对错误识别.返回给前端.?
+
+
+

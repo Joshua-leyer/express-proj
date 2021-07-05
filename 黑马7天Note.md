@@ -665,26 +665,5 @@ session中间件后面会帮我们处理 cookies的写入和读取的逻辑, 我
 默认session的内容存储到内存中的。
 
 
-- 一般案例的基本步骤
-
-其实写的时候一切都从需求出发,
-
-1. 目录结构
-```js
--- app.js
--- models/          存放mongoose设计的数据表模型
--- node_modules/    存放包地方
--- package.json     项目配置文件
--- public/          公共的静态文件 html、js、css
--- router.js        处理路由逻辑
--- views/           存放视图(html)目录 ,也可以放到public/里面 
--- REMADE.md        
-```
-1. 视图页面设计    
-2. 数据库方面的表设计       
-3. 路由设计 
-
-
-# day 7
 
 
