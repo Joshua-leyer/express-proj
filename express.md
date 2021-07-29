@@ -2,10 +2,10 @@
 # Learning Log start
 
 ```js
-npm init
+    npm init
 ```
 
-创建app.js 、 router.js 、 public\  、 views\  、models\ 文件
+app.js 、 router.js 、 public\  、 views\  、models\  
 
 router官网对中间件讲解(https://expressjs.com/zh-cn/guide/using-middleware.html#middleware.router)
 
@@ -13,13 +13,57 @@ router官网对中间件讲解(https://expressjs.com/zh-cn/guide/using-middlewar
 
 ```js
 server.use(express.static(path.join(__dirname, 'public')))
+
 使用这种简写的配置静态文件, url那边直接 : http://127.0.0.1:3000/index.html 
 ```
 
-+ 关于app.render() 
+
+### express 从http请求中获取到web端传递的参数方法
+
+href [1] : https://segmentfault.com/a/1190000008060014
+
+href [2] : https://blog.csdn.net/zgljl2012/article/details/53032555
+
+```js
+
+    locahhost:3000/?id=424
+    let id = req.query.id // 424
+
+```
+
+处理post传递的参数
+
+```js
+let username = req.body.username
+
+```
+
+```js
+
+前端Http路径  
+'user/:id'
+
+后端获取的方式
+let id = req.params.id
+
+```
+
+
+
+### Router 排序的问题
+
+J在写得时候遇到过,但是没能找到准确的文章讲解这一块的.
+
+
+
+
+
+### 关于app.render() 方便
+
+Node.js 原生的写法,大概就是render的功能 
 
 ```js 
-大约等同, node原生
+
 app.get('/', (req, res) =>{
     fs.readFile('public/views/index.html', (err, data) => {
         if (err) return res.send(`500 服务器发生错误`)
@@ -31,9 +75,9 @@ app.get('/', (req, res) =>{
 ```
 
 
-!!! 关于路径配置的坑  
+### !!! 关于路径配置的坑  , 相对路径和绝对路径
 
-+ 关于模板引擎配置
+### 关于模板引擎配置
   
 [Express：模板引擎深入研究](https://www.cnblogs.com/chyingp/p/express-render-engine.html)
 
@@ -93,11 +137,8 @@ req.body 在express以前的版本需要body-parser中间件才能用, 不过现
 
 总的来说是mongoose 返回数据类型的问题
 
-深入模板引擎  了解就收数据具体格式
 
-自己用find()函数返回的内容 输出出来发现是一个数组,每个元素是一个对象。怀疑跟这个有关系
 
-自己查到了有两个地方可能出问题, 所以大题就是能从这两个地方解决问题。
 
 done > A :
 
@@ -135,7 +176,7 @@ articles.forEach(function(item) {
 
 
 
-#### 关于session 时候的不理解的问题
+### 关于session 时候的不理解的问题
 
 看的是黑马的教程,那个傻逼讲错了。草了。我在这硬听,怎么都听不明白。服了这种培训机构,黑马还算做的大的. 中国的环境,没话说
 
@@ -303,6 +344,9 @@ function auth(req, res, next) {
 
 
 
-# ?? ?
+# Q_A
 
 - ? 假如注册了同名的用户了. 数据校验在mongoose unique来完成。最终数据库的错误如何捕获,并对错误识别.返回给前端.?
+
+
+
