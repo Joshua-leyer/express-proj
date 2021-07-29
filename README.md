@@ -35,9 +35,9 @@ Vue + Node 前后端商城项目  [https://www.bilibili.com/video/BV1vJ411s7dR?p
 
 # content 
 
-/blog_test 、 /blog_two 、博客项目练习
+/blog_test 、 /blog_two 、博客项目练习 two比较完善的
 
-/exp4_demo 比较完善的博客系统. 不是分离的结构
+
 
 /login-demo 登录模块练习
 
