@@ -1,35 +1,4 @@
 
-# other home
-
-(bilibili的一个黑马的教程)https://www.bilibili.com/video/BV1Ns411N7HU?from=search&seid=15274980466092256358
-
-[bilibili, 1小时搞定NodeJs(Express)的用户注册、登录和授权](https://www.bilibili.com/video/BV1Nb411j7AC?from=search&seid=4522291517950492672)
-
-(求知网的一个 node 方面的教程) https://www.qiuzhi99.com/playlists?q%5Bnode_id_eq%5D=2
-
-
-(mooc的一个教程)  Node.js 从零开发web server博客项目 
-
-https://www.yiibai.com/nodejs/nodejs_express_framework.html
-
-
-(b站一个人自己发的教程)https://www.bilibili.com/video/BV1HV41127db?p=47
-
-(一个人的实战视频)https://www.bilibili.com/video/BV1T7411g73H?p=62
-
-
-https://www.bilibili.com/video/BV1ca4y1n7u3?p=95
-
-
-[一个人的博客文章](https://www.cnblogs.com/500m/category/1477365.html)
-
-[知乎一个文章讲, express核心原理](https://zhuanlan.zhihu.com/p/56947560)
-
-
-Vue + Node 前后端商城项目  [https://www.bilibili.com/video/BV1vJ411s7dR?p=148]
-
-（持续更新中）快速掌握Webpack核心概念【Webpack】  https://www.bilibili.com/video/BV12a4y1W76V?from=search&seid=14059220905690217598
-
 # Learning Log start
 
 ```js
@@ -88,11 +57,22 @@ server.set('views', path.join(__dirname, './public/views/'))
 + body-parser中间件
 
 
+#### req.body req.query req.params
+
+req.body 在express以前的版本需要body-parser中间件才能用, 不过现在似乎使用自带的一个json中间件也行,处理post请求,拿到表单用的.
+
+
+- `req.query`: 解析后的 url 中的 querystring，如 `?name=haha`，req.query 的值为 `{name: 'haha'}`
+- `req.params`: 解析 url 中的占位符，如 `/:name`，访问 /haha，req.params 的值为 `{name: 'haha'}`
+- `req.body`: 解析后请求体，需使用相关的模块，如 [body-parser](https://www.npmjs.com/package/body-parser)，请求体为 `{"name": "haha"}`，则 req.body 为 `{name: 'haha'}`
+
+
 #### ???? 关于 _id双引号 问题.
 
 详细见我的一些案例里面会有
 
 从mongo里面拿到的数据log出来的每个文章id是字符串不带引号的.而发送到前端,　art 输出的时候就是带双引号的字符串,不知道那一个环节有问题.
+
 ```js 
     Article.find({}, function(err, articles) {
         if (err) throw err
@@ -101,11 +81,14 @@ server.set('views', path.join(__dirname, './public/views/'))
     })
     
 ```
+
 后端的内容拿到后发给前端模板引擎 , 显示出来就是 : "12sadi902134j"
 本来想要的输出是 : 字符串格式就行了,可是一同吧双引号也输出出来了.
+
 ```html 
     <h3> {{ $index }} - <a href="article/{{ value._id }}">{{ value.title }}</a> </h3>
 ```
+
 [别人类似的问题](https://segmentfault.com/a/1190000007818969)
 
 总的来说是mongoose 返回数据类型的问题
@@ -119,6 +102,7 @@ server.set('views', path.join(__dirname, './public/views/'))
 done > A :
 
 问了一个人, 他告诉我怎么写, 但是我还没搞明白具体原因
+
 ```html
     {{ each articles value }}
     <h4>{{ value._id }} </h4>
@@ -155,8 +139,10 @@ articles.forEach(function(item) {
 
 看的是黑马的教程,那个傻逼讲错了。草了。我在这硬听,怎么都听不明白。服了这种培训机构,黑马还算做的大的. 中国的环境,没话说
 
-express-session ,一直没搞明白好像只需要cookie就能实现保存登录状态,为什么还要session
+express-session ,一直没搞明白好像只需要cookie就能实现保存登录状态,为什么还要session ------> 后来,明白了，是教程讲的有问题.  验证登录那块不要用session , 太麻烦，还不好理解. 挂载到req对象上面就很狗血.
 
+
+# res.render() 函数
 
 res.render('login.html', {
     data: JSON.stringify({
