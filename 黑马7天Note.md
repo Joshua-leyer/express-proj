@@ -20,29 +20,29 @@ node作用域
  congole.log(exports) >  {}
 
 - exports 默认是个空对象, 暴露给外面的文件需要挂在到exports对象上面
-  var age = 18
+  let age = 18
 
   module.exports = car
 
 
 - ip地址和端口号
+
 理解端口号, 需要点计算机操作系统的知识
 
 
 > 响应的内容只能是二进制数据和字符串
 
 编码格式的确定
+
 ``` js
 server.on('request', (req, res)=>{
     res.setHeader('Content-Type', 'text/plain; charset=utf-8')
-
 })
 ```
 
-发送文件中的数据以及Content-Type 的内容类型
+发送文件中的数据以及 Content-Type 的内容类型
 
 
-# 留言板
 
 
 
@@ -51,10 +51,15 @@ server.on('request', (req, res)=>{
 - 初步实现apache功能
 
 重定向: >
+
 方式一:
+
 res.statusCode = 302
+
 res.setHeader('Location', '/')
+
 方式二:
+
 res.redirect('/')
 
 word key: node.js 重定向
@@ -62,9 +67,10 @@ word key: node.js 重定向
 - npm install art-template   一个模板引擎
 
 服务器渲染和客户端渲染区别
+
 + 客户端不利于ESO搜索引擎的优化
 + 服务端渲染可以被爬虫抓取到, 异步渲染的比较麻烦
-+ 
+
 
 
 - url 模块 ,方便我们解析url路径的
@@ -96,7 +102,7 @@ module.exports = add
 
 - 模块引用的原理
   
-  +  每个模块都有自己的module对象,对象中有一个exports对象,默认是空对象
+  +  每个模块都有自己的 module 对象, 对象中有一个exports对象, 默认是空对象
   ``` js
     var module = {
      exports: {
@@ -111,7 +117,7 @@ module.exports = add
   module.exports.foo = 'bar'
 
 
-  exports = {}  //这句话写出来, 会断开引用, 其实就是自己搞了个对象, 跟module里面的exports对象没有关系
+  exports = {}  // 这句话写出来, 会断开引用, 其实就是自己搞了个对象, 跟 module里面的exports对象没有关系
   // eg:
   /*
 
@@ -132,7 +138,7 @@ module.exports = add
 
 
 - npm 
-  npm init > 命令完了以后会有一个初始化package.json文件
+  npm init > 命令完了以后会有一个初始化 package.json 文件
 
   + npm 常用命令
   
@@ -143,6 +149,7 @@ module.exports = add
 cmd 命令: > mkdir '目录名'
 
 //公开指定目录(提供静态资源)
+
 app.use('/public/', express.static('./public/'))
 
 
@@ -158,7 +165,7 @@ app.use('/public/', express.static('./public/'))
     * node_modules
 - package.json 包描述
 - npm 常用命令
-- express开个头
+- express 开个头
 
 
 
@@ -197,12 +204,14 @@ app.listen(3000, () => {
 
 ? > 静态资源加载,路径问题. 这一块老是因为路径问题出错
 
-  ``` js
-    app.get('/', (req, res) => {
-      res.send('hello')
-    })
+``` js
 
-  ```
+app.get('/', (req, res) => {
+  res.send('hello')
+})
+
+```
+
   静态服务
   // 当以/public/ 开头时候，去./public/目录中拿到对应(/资源名字)资源
   app.ues('./public/', express.static('./public/'))
