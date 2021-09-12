@@ -71,10 +71,6 @@ const dashboard = (req, res) => {
         if (err) {
             throw err;
         } else {
-<<<<<<< HEAD
-=======
-            console.log('dashboard get articles is', data)
->>>>>>> 7f5781bcf930042a98179cf3dad5cf008644f33a
             res.render('./admin/dashboard.html',{data})
         }
     })

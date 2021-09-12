@@ -1,13 +1,8 @@
 
 const { Article } = require('../models/articles')
-<<<<<<< HEAD
 const mongoose = require('mongoose');
 const ObjectId = require('mongodb').ObjectId;
 const log = console.log
-=======
-let mongoose = require('mongoose');
-
->>>>>>> 7f5781bcf930042a98179cf3dad5cf008644f33a
 // get / 
 const index = async (req, res) => {
     await Article.find({}, function(err, data) {
@@ -52,7 +47,6 @@ const watchArticle = (req, res) => {
     //     }
     // })
 }
-
 
 
 
