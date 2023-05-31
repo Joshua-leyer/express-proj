@@ -96,7 +96,7 @@ module.exports = add
 
 - 模块引用的原理
   
-  +  每个模块都有自己的module对象,对象中有一个exports对象,默认是空对象
+  +  每个模块都有自己的 module 对象,对象中有一个 exports 对象,默认是空对象
   ``` js
     var module = {
      exports: {
@@ -132,7 +132,7 @@ module.exports = add
 
 
 - npm 
-  npm init > 命令完了以后会有一个初始化package.json文件
+  npm init > 命令完了以后会有一个初始化 package.json 文件
 
   + npm 常用命令
   
@@ -140,9 +140,8 @@ module.exports = add
 
 初始化项目命令 npm init -y
 
-cmd 命令: > mkdir '目录名'
 
-//公开指定目录(提供静态资源)
+- 提供静态资源
 app.use('/public/', express.static('./public/'))
 
 
@@ -150,7 +149,7 @@ app.use('/public/', express.static('./public/'))
 - jQuery 的each 和原生js each区别
 -  301 302
 -  module.exports 和exports的区别
--  require加载规则
+-  require 加载规则
   + 优先从缓存加载
   + 核心模块
   + 路径形成的模块
@@ -231,8 +230,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 
 
-
-
 - 使用air-template模板引擎  
   npm install --save art-template  
   npm install --save express-art-template
@@ -249,7 +246,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 
 
-- req.query  可以直接拿到get请求参数 ,用于解析get请求是带的数据的
+- req.query  可以直接拿到 get 请求参数 ,用于解析 get 请求是带的数据的
   console.log(req.query)
 
 - express 处理表单POST请求

@@ -53,7 +53,7 @@ app.post('/api/login', async (req, res) => {
         })
     }
 
-    // 生成token
+    // 生成 token
     // 写在上面了 const jwt = require('jsonwebtoken')
 
     const token = jwt.sign({

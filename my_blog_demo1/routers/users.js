@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt')
 
 
 
-let router = express.Router()
+const router = express.Router()
 
 //查看所有用户
 router.get('/allusers', function(req, res, next) {
@@ -70,7 +70,7 @@ router.post('/login', function(req, res) {
 })
 */
 
-//使用express-session来写
+//使用 express-session 来写
 router.post('/login', function(req, res, next) {
     console.log(req.body)
     const { username, password } = req.body

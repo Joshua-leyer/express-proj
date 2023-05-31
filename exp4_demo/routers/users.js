@@ -28,7 +28,7 @@ router.get('/register', function(req, res) {
 router.post('/register', function(req, res) {
     let user = new User(req.body)
 
-    //这个写法可真麻烦 ,能一行就解决的最好了 . 
+    //这个写法可真麻烦 , 能一行就解决的最好了 . 
     bcrypt.genSalt(10, function(err, salt) {
         if (err) throw err
         bcrypt.hash(user.password, salt, function(err, hash) {
@@ -70,7 +70,7 @@ router.post('/login', function(req, res) {
 })
 */
 
-//使用express-session来写
+//使用 express-session 来写
 router.post('/login', function(req, res) {
     console.log(req.body)
     const { username, password } = req.body

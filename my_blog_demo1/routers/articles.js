@@ -31,7 +31,7 @@ router.get('/add', auth, function(req, res) {
 
 /*
 router.get('/', function(req, res) {
-    //方法1 可行,但是方法2就不行了，只能在模板渲染的时候解决
+    //方法1 可行,但是方法 2 就不行了，只能在模板渲染的时候解决
     // Article.find().lean(true).exec(function(err, articles){
     //     console.log(articles)
     //     // 这里不起作用
