@@ -1,52 +1,61 @@
 
-# other home
-
-(bilibili的一个黑马的教程)https://www.bilibili.com/video/BV1Ns411N7HU?from=search&seid=15274980466092256358
-
-[bilibili, 1小时搞定NodeJs(Express)的用户注册、登录和授权](https://www.bilibili.com/video/BV1Nb411j7AC?from=search&seid=4522291517950492672)
-
-(求知网的一个 node 方面的教程) https://www.qiuzhi99.com/playlists?q%5Bnode_id_eq%5D=2
-
-
-(mooc的一个教程)  Node.js 从零开发web server博客项目 
-
-https://www.yiibai.com/nodejs/nodejs_express_framework.html
-
-
-(b站一个人自己发的教程)https://www.bilibili.com/video/BV1HV41127db?p=47
-
-(一个人的实战视频)https://www.bilibili.com/video/BV1T7411g73H?p=62
-
-
-https://www.bilibili.com/video/BV1ca4y1n7u3?p=95
-
-
-[一个人的博客文章](https://www.cnblogs.com/500m/category/1477365.html)
-
-[知乎一个文章讲, express核心原理](https://zhuanlan.zhihu.com/p/56947560)
-
-
-Vue + Node 前后端商城项目  [https://www.bilibili.com/video/BV1vJ411s7dR?p=148]
-
-（持续更新中）快速掌握Webpack核心概念【Webpack】  https://www.bilibili.com/video/BV12a4y1W76V?from=search&seid=14059220905690217598
 
 
 
+## Mongose 
 
-# content 
+#### ???? 关于 _id双引号 问题.
 
-/blog_test 、 /blog_two 、博客项目练习 two比较完善的
+详细见我的一些案例里面会有
 
+从mongo里面拿到的数据log出来的每个文章id是字符串不带引号的.而发送到前端,　art 输出的时候就是带双引号的字符串,不知道那一个环节有问题.
+```js 
+    Article.find({}, function(err, articles) {
+        if (err) throw err
+        // 输出的所有Article 表的所有文章.
+        console.log(articles)
+    })
+    
+```
+后端的内容拿到后发给前端模板引擎 , 显示出来就是 : "12sadi902134j"
+本来想要的输出是 : 字符串格式就行了,可是一同吧双引号也输出出来了.
+```html 
+    <h3> {{ $index }} - <a href="article/{{ value._id }}">{{ value.title }}</a> </h3>
+```
+[别人类似的问题](https://segmentfault.com/a/1190000007818969)
 
+总的来说是mongoose 返回数据类型的问题
 
-/login-demo 登录模块练习
+深入模板引擎  了解就收数据具体格式
 
-/blog_html_css_template 、 /blog_views_template 是一些博客的前端样式模板.
+自己用find()函数返回的内容 输出出来发现是一个数组,每个元素是一个对象。怀疑跟这个有关系
 
-/other_demo 别人的项目, 有一定基础后看别人的代码学习别人的写法
+自己查到了有两个地方可能出问题, 所以大题就是能从这两个地方解决问题。
 
-/test 、 app_template.js 是基础的代码模板
+done > A :
 
+问了一个人, 他告诉我怎么写, 但是我还没搞明白具体原因
+```html
+    {{ each articles value }}
+    <h4>{{ value._id }} </h4>
+    <h3> {{ $index }} - <a href="articles/{{ value._id }}">{{ value.title }} + {{ `${value._id}` }}</a> </h3>
+    {{ /each }}
+```
+{{ `${value.id}` }}  模板引擎写成这样 字符串的双引号就没有了 具体不清楚为什么
 
+还有一种办法 : >
+```js
+articles.forEach(function(item) {
+    item._id = item._id.toString()
+    // console.log(typeof item._id)  //不明白为什么拿到的是对象
+    console.log(`本次拿到的数据`, item)
+})
 
-# Node
+```
+把某一个字段改成字符串类型重新赋值, 应为Mongo拿到的_id数据是 特有的数据类型, 还不是js 的基本数据类型,想办法转换一下数据类型,避免art 模板引擎拿到数据的时候因为数据格式的问题造成的 出现双引号
+
+    {{ article }}
+我写到文章更新页面的时候还发生了同样的错误,在服务端解决的办法不行了。我在html页面拿到的数据直接显示到页面
+{"_id":"603a6acc844efa08eb44b497","title":"two","body":"two"}
+发现它把数据本能的当成字符串来解析
+

@@ -46,7 +46,7 @@ app.engine('html', require('express-art-template'))
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(cookieParser());         //设置中间件
+app.use(cookieParser());         // 设置中间件
 
 
 const { Article } = require('./models/article');

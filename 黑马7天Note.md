@@ -20,29 +20,29 @@ node作用域
  congole.log(exports) >  {}
 
 - exports 默认是个空对象, 暴露给外面的文件需要挂在到exports对象上面
-  let age = 18
+  var age = 18
 
   module.exports = car
 
 
 - ip地址和端口号
-
 理解端口号, 需要点计算机操作系统的知识
 
 
 > 响应的内容只能是二进制数据和字符串
 
 编码格式的确定
-
 ``` js
 server.on('request', (req, res)=>{
     res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+
 })
 ```
 
-发送文件中的数据以及 Content-Type 的内容类型
+发送文件中的数据以及Content-Type 的内容类型
 
 
+# 留言板
 
 
 
@@ -51,15 +51,10 @@ server.on('request', (req, res)=>{
 - 初步实现apache功能
 
 重定向: >
-
 方式一:
-
 res.statusCode = 302
-
 res.setHeader('Location', '/')
-
 方式二:
-
 res.redirect('/')
 
 word key: node.js 重定向
@@ -67,10 +62,9 @@ word key: node.js 重定向
 - npm install art-template   一个模板引擎
 
 服务器渲染和客户端渲染区别
-
 + 客户端不利于ESO搜索引擎的优化
 + 服务端渲染可以被爬虫抓取到, 异步渲染的比较麻烦
-
++ 
 
 
 - url 模块 ,方便我们解析url路径的
@@ -102,7 +96,7 @@ module.exports = add
 
 - 模块引用的原理
   
-  +  每个模块都有自己的 module 对象, 对象中有一个exports对象, 默认是空对象
+  +  每个模块都有自己的module对象,对象中有一个exports对象,默认是空对象
   ``` js
     var module = {
      exports: {
@@ -117,7 +111,7 @@ module.exports = add
   module.exports.foo = 'bar'
 
 
-  exports = {}  // 这句话写出来, 会断开引用, 其实就是自己搞了个对象, 跟 module里面的exports对象没有关系
+  exports = {}  //这句话写出来, 会断开引用, 其实就是自己搞了个对象, 跟module里面的exports对象没有关系
   // eg:
   /*
 
@@ -138,7 +132,7 @@ module.exports = add
 
 
 - npm 
-  npm init > 命令完了以后会有一个初始化 package.json 文件
+  npm init > 命令完了以后会有一个初始化package.json文件
 
   + npm 常用命令
   
@@ -149,7 +143,6 @@ module.exports = add
 cmd 命令: > mkdir '目录名'
 
 //公开指定目录(提供静态资源)
-
 app.use('/public/', express.static('./public/'))
 
 
@@ -165,7 +158,7 @@ app.use('/public/', express.static('./public/'))
     * node_modules
 - package.json 包描述
 - npm 常用命令
-- express 开个头
+- express开个头
 
 
 
@@ -182,7 +175,6 @@ app.use('/public/', express.static('./public/'))
 // express 建立一个服务器基本模板代码
 ```js
 var express = require('express')
-
 
 var app = express()
 app.get('/', function(req, res) {  //我本来用了箭头函数,发现nodemon 来启动项目就报错了
@@ -204,14 +196,12 @@ app.listen(3000, () => {
 
 ? > 静态资源加载,路径问题. 这一块老是因为路径问题出错
 
-``` js
+  ``` js
+    app.get('/', (req, res) => {
+      res.send('hello')
+    })
 
-app.get('/', (req, res) => {
-  res.send('hello')
-})
-
-```
-
+  ```
   静态服务
   // 当以/public/ 开头时候，去./public/目录中拿到对应(/资源名字)资源
   app.ues('./public/', express.static('./public/'))
@@ -387,77 +377,6 @@ module.exports = router
 
 ### MongoDB
 
-关系型数据库 > 表就是关系, 表与表之间有关系,所有关系型数据库都可以使用sql语言操作
-              ,需要设计表结构,数据表还支持约束:唯一、主键、默认值、非空
-非关系型数据库 > key-value对
-
-安装 > 
-配置环境变量 > C:\Program Files\MongoDB\Server\4.2\bin 默认路径
-
-
-cmd输入 mongod --version  或者mongo 看看能不能进入
-
-
-(非)关系型数据库
-表就是关系
- + 所有关系型数据库都需要sql语言操作、设计表结构、 还要有约束、主键、默认值、非空
- + 非关系型数据库  是key-vaule 键值对
-
-  * 数据库 > 数据库
-  * 数据表 > 集合(数组)
-  * 表记录 > (文档对象)
-  * 不需要设计表结构
-  * 
-
-- 下午
-
-
-
-使用 mongod 命令(cmd命令需要在C盘路径下执行) 开启数据库需要手动在c盘里面 /data/db 作为数据存储目录
-修改 mongod --dpath=路径
-
-连接数据库
-mongo 连接本机服务 
-exict 退出连接
-
-
-- 基本操作
-
-  启动 >>>  
-  mongod  命令以前先创建db的文件夹   
-
-  修改默认的存储路径:
-  mongod --dbpah=路径
-
-  停止 >>>
-  ctrl + c
-
-  连接 : 
-  mongo 
-
-  关闭连接 : 
-  exit
-
-  基本命令
-    show dbs    查看所有的数据库(如果新建的数据库,里面没有内容,就看不到)
-    db    当前正在操作的数据库
-    use 数据库名字    
-    show collections 查看通过new Schema({}) 设计的文档结构 目录 比如输出>> cat
-    db.cats.find()
-
-删除数据
-1.带条件删除
->db.user.remove({"name":"zhangshan"});
-2.删除所有数据
->db.user.remove({})
-3.删除集合
->db.user.drop()
-4.删除整个数据库
->show dbs;
->db.user.getDB()
->db.dropDatabase()
-
-
 添加
 ```js
 
@@ -475,22 +394,6 @@ one.save(function(err, ret) {
 ```
 
 
-
-
->>>
-[配合菜鸟教程理解一下mongodb的概念](https://www.runoob.com/mongodb/mongodb-databases-documents-collections.html)
-mongo :> 在cmd 处连接到了mongodb
-
-use demo1 :> 创建数据库  (此时并没有真的创建,除非我们真的存入了得一个数据)
-db.createCollection('articles') :>  创建数据库表/集合  db中叫做collection
-show collections :>  查看刚才 use 的数据库下面有哪些 数据库表(collection) . 
-
-db.articles.insert({title:'one', body:'one'});
-
-查看表中的内容
-db.articles.find() :> (articles 是 show collections 里面的内容)
-
-<<<
 
 
 
@@ -511,53 +414,7 @@ kitty.save().then(() => console.log('meow'));
 
 ```
 
-mongodb 基本概念
-  数据可以看做是对象集合
 
-Schema 常见字段
-
-https://blog.csdn.net/momDIY/article/details/76285369
-
-var schema3 = new Schema({
-  test: {
-    type: String,
-    lowercase: true, // 总是将test的值转化为小写
-    uppercase: true, // 总是将test的值转化为大写
-    required:true, //设定是否必填
-    default:'star', //设定默认值
-    index：true, //设定索引值
-    unique：true, //索引值唯一
-    sparse：true, //是否启用稀疏索引
-    match：RegExp, //判断是否通过正则验证
-    enum：Array， //判断test值是否包含于enmu对应的数组中
-    min：Number， //判断对应值是否大于等于给定值
-    max：Number， //判断对应值是否小于等于给定值
-    trim:true //去除数据前后的空格
-    capped:1024 //限定大小最大为1024字节
-    validate：function，为此属性添加一个验证器函数，如demo1所示
-    get：function，//为这个属性定义一个定制的getter Object.defineProperty()。如demo2所示
-    set：function，//定义此属性的自定义设置Object.defineProperty()。如demo2所示
-  }
-});
-
-
-
-
-CRUD 示例代码在 day5 里面mongoose/demo2.js 里面有
-
-
-
-
-
-- 使用node.js 操作Mysql数据库
-  https://www.npmjs.com/package/mysql  这个网页的基本就够用了
-
-
-
-
-- Promise
-  callback hell
-  
 
 
 # day 6
@@ -610,7 +467,7 @@ res.statue(200).json({})
 
 后来有人想到了一种办法，来解决这个问题。
 
-? >  前端的表单是用ajax的异步方式,但是,后端处理信息用json()响应前端以后会导致前端页面直接现实json格式的字符串, (如果是form表单默认的提交方式,会导致这种情况,但是这里还是出现了这种情况.)
+? >  前端的表单是用 ajax 的异步方式,但是,后端处理信息用json()响应前端以后会导致前端页面直接现实json格式的字符串, (如果是form表单默认的提交方式,会导致这种情况,但是这里还是出现了这种情况.)
 
 ```js
     $('#uiser-register').on('submit', function(e){

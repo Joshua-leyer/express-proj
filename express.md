@@ -1,4 +1,35 @@
 
+# other home
+
+(bilibili的一个黑马的教程)https://www.bilibili.com/video/BV1Ns411N7HU?from=search&seid=15274980466092256358
+
+[bilibili, 1小时搞定NodeJs(Express)的用户注册、登录和授权](https://www.bilibili.com/video/BV1Nb411j7AC?from=search&seid=4522291517950492672)
+
+(求知网的一个 node 方面的教程) https://www.qiuzhi99.com/playlists?q%5Bnode_id_eq%5D=2
+
+
+(mooc的一个教程)  Node.js 从零开发web server博客项目 
+
+https://www.yiibai.com/nodejs/nodejs_express_framework.html
+
+
+(b站一个人自己发的教程)https://www.bilibili.com/video/BV1HV41127db?p=47
+
+(一个人的实战视频)https://www.bilibili.com/video/BV1T7411g73H?p=62
+
+
+https://www.bilibili.com/video/BV1ca4y1n7u3?p=95
+
+
+[一个人的博客文章](https://www.cnblogs.com/500m/category/1477365.html)
+
+[知乎一个文章讲, express核心原理](https://zhuanlan.zhihu.com/p/56947560)
+
+
+Vue + Node 前后端商城项目  [https://www.bilibili.com/video/BV1vJ411s7dR?p=148]
+
+（持续更新中）快速掌握Webpack核心概念【Webpack】  https://www.bilibili.com/video/BV12a4y1W76V?from=search&seid=14059220905690217598
+
 # Learning Log start
 
 ```js
@@ -48,24 +79,32 @@ let id = req.params.id
 
 ```
 
-### 静态服务
 
-三种方式: 
-  + app.ues('./public/', express.static('./public/'))   //访问 : /public/**
-  + app.use(express.static('./public/'))          //访问 : /** (不写./也可以)
-  + app.ues('/a/', express.static('public'))  // 访问时候 : /a/public/**  
 
 ### Router 排序的问题
 
 J在写得时候遇到过,但是没能找到准确的文章讲解这一块的.
 
+### express 静态文件服务
+ 
+静态服务  
+// 当以/public/ 开头时候，去./public/目录中拿到对应(/资源名字)资源  
+app.ues('./public/', express.static('./public/'))  
+
+下面省略第一个参数, 这回导致url路径的变化,好处就是可以省略url路径中的/public/字符串  
+app.ues(express.static('public'))  
+浏览器访问的时候就直接/文件名就行了
+* 三种方式:   
+app.ues('./public/', express.static('./public/'))   //访问 : /public/**  
+app.use(express.static('./public/'))          //访问 : /** (不写./也可以)  直接访问public文件夹下面的文件内容就可以.
+app.ues('/a/', express.static('public'))  // 访问时候 : /a/public/**    
 
 
 
 
-### 关于 app.render() 方便
+### 关于app.render() 方便
 
-Node.js 原生的写法, 大体就是render的功能 
+Node.js 原生的写法,大概就是render的功能 
 
 ```js 
 
@@ -80,16 +119,15 @@ app.get('/', (req, res) =>{
 ```
 
 
-### !!! 关于路径配置的坑  , 相对路径和绝对路径
 
-### 关于模板引擎 art-template 配置  
+### 关于模板引擎配置
   
 [Express：模板引擎深入研究](https://www.cnblogs.com/chyingp/p/express-render-engine.html)
 
 [~ express ~ 模板引擎的配置与使用](https://www.cnblogs.com/500m/p/10980332.html)
 
 
-安装 art-template 模板引擎
+安装art-template模板引擎
 
 npm i art-template && express-art-template
 
@@ -103,22 +141,8 @@ server.set('views', path.join(__dirname, './public/views/'))
 
 ```
 
-+ body-parser 中间件
-  
 
-#### 三个常用后端接受前端的数据, req.body req.query req.params
-
-req.body 在express以前的版本需要body-parser中间件才能用, 不过现在似乎使用自带的一个json中间件也行,处理post请求,拿到表单用的.
-
-
-- `req.query`: 解析后的 url 中的 querystring，如 `?name=haha`，req.query 的值为 `{name: 'haha'}`
-- `req.params`: 解析 url 中的占位符，如 `/:name`，访问 /haha，req.params 的值为 `{name: 'haha'}`
-- `req.body`: 解析后请求体，需使用相关的模块，如 [body-parser](https://www.npmjs.com/package/body-parser)，请求体为 `{"name": "haha"}`，则 req.body 为 `{name: 'haha'}`
-
-
-
-
-#### 前端使用jquery的发送ajax请求重定向又需要携带一些数据的话,需要express res.进行操作的那种解决办法
+### 前端使用jquery的发送ajax请求重定向又需要携带一些数据的话,需要express res.进行操作的那种解决办法
 
 后端send href的地址字符串,让前端success 回调函数拿到数据去 window.location.href= url  这样来处理
 
@@ -128,10 +152,8 @@ req.body 在express以前的版本需要body-parser中间件才能用, 不过现
 
 看的是黑马的教程,那个傻逼讲错了。草了。我在这硬听,怎么都听不明白。服了这种培训机构,黑马还算做的大的. 中国的环境,没话说
 
-express-session ,一直没搞明白好像只需要cookie就能实现保存登录状态,为什么还要session ------> 后来,明白了，是教程讲的有问题.  验证登录那块不要用session , 太麻烦，还不好理解. 挂载到req对象上面就很狗血.
+express-session , 一直没搞明白好像只需要cookie就能实现保存登录状态, 为什么还要session
 
-
-# res.render() 函数
 
 res.render('login.html', {
     data: JSON.stringify({
@@ -296,62 +318,5 @@ function auth(req, res, next) {
 
 - ? 假如注册了同名的用户了. 数据校验在mongoose unique来完成。最终数据库的错误如何捕获,并对错误识别.返回给前端.?
 
-
-#### ???? 在 mongoose 中 关于 _id双引号 问题.
-
-详细见我的一些案例里面会有
-
-从mongo里面拿到的数据log出来的每个文章id是字符串不带引号的.而发送到前端,　art 输出的时候就是带双引号的字符串,不知道那一个环节有问题.
-
-```js 
-    Article.find({}, function(err, articles) {
-        if (err) throw err
-        // 输出的所有Article 表的所有文章.
-        console.log(articles)
-    })
-    
-```
-
-后端的内容拿到后发给前端模板引擎 , 显示出来就是 : "12sadi902134j"
-本来想要的输出是 : 字符串格式就行了,可是一同吧双引号也输出出来了.
-
-```html 
-    <h3> {{ $index }} - <a href="article/{{ value._id }}">{{ value.title }}</a> </h3>
-```
-
-[别人类似的问题](https://segmentfault.com/a/1190000007818969)
-
-总的来说是mongoose 返回数据类型的问题
-
-
-
-
-done > A :
-
-问了一个人, 他告诉我怎么写, 但是我还没搞明白具体原因
-
-```html
-    {{ each articles value }}
-    <h4>{{ value._id }} </h4>
-    <h3> {{ $index }} - <a href="articles/{{ value._id }}">{{ value.title }} + {{ `${value._id}` }}</a> </h3>
-    {{ /each }}
-```
-{{ `${value.id}` }}  模板引擎写成这样 字符串的双引号就没有了 具体不清楚为什么
-
-还有一种办法 : >
-```js
-articles.forEach(function(item) {
-    item._id = item._id.toString()
-    // console.log(typeof item._id)  //不明白为什么拿到的是对象
-    console.log(`本次拿到的数据`, item)
-})
-
-```
-把某一个字段改成字符串类型重新赋值, 应为Mongo拿到的_id数据是 特有的数据类型, 还不是js 的基本数据类型,想办法转换一下数据类型,避免art 模板引擎拿到数据的时候因为数据格式的问题造成的 出现双引号
-
-    {{ article }}
-我写到文章更新页面的时候还发生了同样的错误,在服务端解决的办法不行了。我在html页面拿到的数据直接显示到页面
-{"_id":"603a6acc844efa08eb44b497","title":"two","body":"two"}
-发现它把数据本能的当成字符串来解析
 
 
